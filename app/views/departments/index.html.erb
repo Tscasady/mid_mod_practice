@@ -1,0 +1,10 @@
+<% @departments.each do |department| %>
+  <div id=<%= "dep_#{department.id}"%>>
+    <%= department.name %> 
+    <%= "Floor: #{department.floor}" %> 
+    <p> Employees:</p>
+    <% department.employees.each do |employee| %>
+      <%= employee.name %>
+    <% end %>
+  </div><br>
+<% end %>

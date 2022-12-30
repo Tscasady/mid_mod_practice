@@ -1,0 +1,23 @@
+<%= @employee.name %>
+<%= @employee.department.name %>
+<p>Tickets:</p>
+<% @employee.ordered_tickets.each do |ticket| %>
+  <% if ticket == @employee.ordered_tickets.last %>
+    <%= "Oldest Ticket: #{ticket.subject}" %>
+  <% else %>
+    <%= ticket.subject %>
+  <% end %>
+<% end %>
+
+<p>Employees on same tickets</p>
+<% @employee.co_workers.each do |employee| %>
+  <% next if employee == @employee %>
+  <%= employee.name %>
+<% end %>
+  
+
+<%= form_with url: "/employees/#{@employee.id}", method: :patch do |form| %>
+  <%= form.label "Add Ticket"%>
+  <%= form.number_field :ticket_id %>
+  <%= form.submit "Add Ticket"%>
+<% end %>
